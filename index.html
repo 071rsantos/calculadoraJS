@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora JS</title>
+</head>
+<style>
+    @font-face {
+        font-family: calculadora;
+        src: url(fonte/DS-DIGIT.TTF);
+    }
+*{
+    margin: 0;
+    padding: 0;
+    font-family: calculadora;
+}
+body{
+    background: linear-gradient(blue, black);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 25px;
+    color: black;
+}
+h1{
+    color: rgb(0, 255, 98);
+}
+#calculadora{
+    background: grey;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
+}
+#visor{
+    background: rgb(66, 66, 66);
+    padding: 10px;
+    border-radius: 12px;
+    width: 210px;
+    height: 30px;
+    justify-content: center;
+    text-align: right;
+}
+#acoes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+#numeros{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+}
+#numeros button{
+    padding: 7px;
+    width: 50px;
+    border: solid rgb(8, 55, 87) 2px;
+}
+#numeros #zero{
+    width: 105px;
+}
+button:hover{
+    background: grey;
+    cursor: pointer;
+    transition: .2s;
+}
+#operadores{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+}
+#operadores button{
+    padding: 7px;
+    width: 50px;
+    height: 30px;
+    border: solid black 2px;
+}
+#numeros .result #result{
+    padding: 7px;
+    width: 105px;
+    border: solid rgb(255, 0, 0) 2px;
+}
+#numeros .result #C{
+    padding: 7px;
+    width: 50px;
+    border: solid rgb(255, 0, 0) 2px;
+}
+</style>
+<body>
+    <h1>Calculadora Simples</h1>
+    <div id="calculadora">
+        <div id="visor"></div>
+        <div id="acoes">
+            <div id="numeros">
+                <div id="col1">
+                    <button id="um" onclick="insert('1')">1</button>
+                    <button id="dois" onclick="insert('2')">2</button>
+                    <button id="tres" onclick="insert('3')">3</button>
+                </div>
+                <div id="col2">
+                    <button id="quatro" onclick="insert('4')">4</button>
+                    <button id="cinco" onclick="insert('5')">5</button>
+                    <button id="seis" onclick="insert('6')">6</button>
+                </div>
+                <div id="col3">
+                    <button id="sete" onclick="insert('7')">7</button>
+                    <button id="oito" onclick="insert('8')">8</button>
+                    <button id="nove" onclick="insert('9')">9</button>
+                </div>
+                <div id="col4">
+                    <button id="zero" onclick="insert('0')">0</button>
+                    <button id="ponto" onclick="insert('.')">.</button>
+                </div>
+                <div class="result">
+                    <button id="result" onclick="calcular()">=</button>
+                    <button id="C"onclick="limpar()">C</button>
+                </div>
+            </div>
+            <div id="operadores">
+                <button id="soma"onclick="insert('+')">+</button>
+                <button id="sub"onclick="insert('-')">-</button>
+                <button id="mut"onclick="insert('*')">x</button>
+                <button id="div"onclick="insert('/')">/</button>
+                <button id="back"onclick="back()"><</button>
+            </div>  
+    </div>
+</div>
+    <script>
+        function insert(num){
+            var numero = document.getElementById('visor').innerHTML
+            document.getElementById('visor').innerHTML = numero + num
+        }
+        function limpar(){
+            document.getElementById('visor').innerHTML = ""
+        }
+        function back(){
+            var resultado = document.getElementById('visor').innerHTML
+            document.getElementById('visor').innerHTML = resultado.substring(0, resultado.length -1)
+        }
+        function calcular(){
+            var resultado = document.getElementById('visor').innerHTML
+            if(resultado){
+                document.getElementById('visor').innerHTML = eval(resultado)
+            }
+        }
+    </script>
+</body>
+</html>
